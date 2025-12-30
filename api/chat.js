@@ -4,7 +4,19 @@ import { embedWithFallback, chatWithFallback } from "../lib/models/index.js";
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
+  const origin = req.headers.origin;
+
   const { message, clientId } = req.body;
+
+  const { data: client } = await supabase
+    .from("clients")
+    .select("allowed_domain")
+    .eq("id", clientId)
+    .single();
+
+  if (!client || origin !== client.allowed_domain) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
 
   const embedding = await embedWithFallback(message);
 
