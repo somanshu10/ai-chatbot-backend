@@ -1,11 +1,18 @@
 {
+  "routes": [
+    {
+      "src": "/api/chat",
+      "methods": ["OPTIONS"],
+      "dest": "/api/options"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "value": "https://somanshu10.github.io"
         },
         {
           "key": "Access-Control-Allow-Methods",

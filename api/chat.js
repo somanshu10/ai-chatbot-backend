@@ -5,10 +5,10 @@ export default async function handler(req, res) {
   const origin = req.headers.origin || "*";
 
   // ✅ ALWAYS set CORS headers FIRST
-  res.setHeader("Access-Control-Allow-Origin", origin);
-  res.setHeader("Vary", "Origin");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+res.setHeader("Access-Control-Allow-Origin", "https://somanshu10.github.io");
+res.setHeader("Access-Control-Allow-Methods", "POST");
+res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
 
   // ✅ Handle preflight IMMEDIATELY
   if (req.method === "OPTIONS") {
